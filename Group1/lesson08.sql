@@ -1,1 +1,1 @@
-https://chatgpt.com/c/68de7c3d-0988-8330-a60c-fd710c6cb4ea
+write DDL statment to create Customers table with following columns like CustomerID int primary key, FirstName varchar(50), lastName varchar(50), Birthdate date insert 50 rows but customer names should be real-like names , customerid between 10001 and 10050 birtdate from 1970 to 2005
