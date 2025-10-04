@@ -38,3 +38,18 @@ insert into ProductSales values
 			(2002,'C',4000)
 
 select * from ProductSales
+
+select 
+	A.productName,
+	A.Year,
+	A.Sales,
+	isnull(P.Sales,0) as PrevYearSales,
+	isnull(A.Sales - P.Sales,0) as 'farq #',
+	isnull(cast(cast(A.Sales - P.Sales as decimal(10,2))/cast(P.Sales as decimal(10,2)) * 100 as decimal(10,2)),0) as 'farq %'
+from (
+select S1.productName,S1.Sales,S1.Year,max(S2.year) as prev_year  from ProductSales as S1
+left join ProductSales as S2
+on S1.productName = S2.productName and S1.Year > S2.Year
+group by S1.productName,S1.Sales,S1.Year) as A
+left join ProductSales as P on A.productName = P.productName and A.prev_year = P.Year
+order by A.productName,A.Year
