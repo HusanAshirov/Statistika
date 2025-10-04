@@ -16,3 +16,9 @@ insert into family values (1,'Grandfather',NULL),(2,'Father',1),
 (3,'Uncle',1),(4,'Me',2),(5,'My Son',4),(6,'Cousin',3),(7,'Cousin son',6)
 
 select * from family
+
+
+
+create table letters (letter varchar(50))
+
+insert into letters values ('A'),('B'),('C'),('D'),('E'),('F')
