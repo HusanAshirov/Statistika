@@ -22,3 +22,19 @@ select * from family
 create table letters (letter varchar(50))
 
 insert into letters values ('A'),('B'),('C'),('D'),('E'),('F')
+
+
+create table ProductSales (Year int, productName varchar(50),Sales int)
+--truncate table ProductSales
+insert into ProductSales values 
+			( 2000,'A',5000),
+			(2000,'B',4500),
+			(2000,'C',6000),
+			( 2001,'A',7000),
+			(2001,'B',6000),
+			(2001,'C',8000),
+			( 2002,'A',5000),
+			(2002,'B',4000),
+			(2002,'C',4000)
+
+select * from ProductSales
