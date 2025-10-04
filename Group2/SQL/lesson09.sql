@@ -38,3 +38,45 @@ insert into ProductSales values
 			(2002,'C',4000)
 
 select * from ProductSales
+
+----###################################################################################
+
+---1st step
+select Ps1.productName,Ps1.Year,Ps1.Sales,Max(Ps2.Year) as prev_year from ProductSales as Ps1
+left join ProductSales as Ps2
+on Ps1.productName = Ps2.productName and Ps1.Year > Ps2.Year
+group by Ps1.productName,Ps1.Year,Ps1.Sales
+
+-----------------------------------------------------
+--2nd steps
+
+select A.productName,A.Sales,PS.Sales from (
+select Ps1.productName,Ps1.Year,Ps1.Sales,Max(Ps2.Year) as prev_year from ProductSales as Ps1
+left join ProductSales as Ps2
+on Ps1.productName = Ps2.productName and Ps1.Year > Ps2.Year
+group by Ps1.productName,Ps1.Year,Ps1.Sales) as A
+left join ProductSales as PS
+on A.productName = PS.productName and A.prev_year = PS.Year
+
+-- 3rd step
+
+
+select 
+		A.productName,
+		A.Sales as hozirgi_savdo,
+		isnull(PS.Sales,0) as otganyilgi_savdo,
+		isnull(A.Sales - PS.Sales,0) as '$',
+		isnull(cast(cast(A.Sales - PS.Sales as decimal(10,2))/cast(PS.Sales as decimal(10,2))*100 as decimal(10,2)),0) as '%'
+		from (
+select Ps1.productName,Ps1.Year,Ps1.Sales,Max(Ps2.Year) as prev_year from ProductSales as Ps1
+left join ProductSales as Ps2
+on Ps1.productName = Ps2.productName and Ps1.Year > Ps2.Year
+group by Ps1.productName,Ps1.Year,Ps1.Sales) as A
+left join ProductSales as PS
+on A.productName = PS.productName and A.prev_year = PS.Year
+
+
+
+
+
+
