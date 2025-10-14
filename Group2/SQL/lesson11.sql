@@ -1,3 +1,11 @@
+create table Emp ( Groups varchar(10),Sequence int)
+
+insert into Emp values ('A',1),('A',2),('A',3),('A',5),('A',6),('A',8),('A',9),('B',11),('C',1),('C',2),('C',3)
+
+
+
+
+
 CREATE TABLE Employees (
     employee_id int,
     first_name varchar(50),
