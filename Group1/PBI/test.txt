@@ -1,1 +1,18 @@
+Date = 
+VAR max_year = YEAR(MAX('Sales'[Date]))
+VAR min_year = YEAR(MIN('Sales'[Date]))
+Return 
+        ADDCOLUMNS(
+                FILTER(
+                        CALENDARAUTO(),
+                        AND(YEAR([Date]) >=min_year,YEAR([Date]) <=max_year)),
+                        "Year",YEAR([Date]),
+                        "Month Number",MONTH([Date]),
+                        "Month Name", FORMAT([Date],"MMMM"),
+                        "Quarter",QUARTER([Date]),
+                        "Day",DAY([Date]),
+                        "Weekday",WEEKDAY([Date]),
+                        "Weekday Name",FORMAT([Date],"dddd"),
+                        "QQ-YYYY","Q" & FORMAT([Date],"Q-YYYY")
+                        )
 
